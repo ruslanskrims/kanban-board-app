@@ -1,7 +1,24 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import KanbanBoardView from './views/KanbanBoardView.vue';
+</script>
 
 <template>
-<h1>Kanban lite board</h1>  
+    <KanbanBoardView />
 </template>
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-<style scoped></style>
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f0f2f5;
+    min-height: 100vh;
+}
+
+#app {
+    min-height: 100vh;
+}
+</style>

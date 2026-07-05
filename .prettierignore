@@ -1,0 +1,21 @@
+gitignore
+# Build output
+dist/
+node_modules/
+coverage/
+
+# Configuration files
+*.config.js
+*.config.ts
+*.config.cjs
+
+# Logs
+*.log
+pnpm-lock.yaml
+package-lock.json
+yarn.lock
+
+# Environment
+.env
+.env.local
+.env.*.local

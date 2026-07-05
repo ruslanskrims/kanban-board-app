@@ -1,0 +1,13 @@
+gitignore
+# Build output
+dist/
+node_modules/
+coverage/
+
+# Configuration files
+*.config.js
+*.config.ts
+*.config.cjs
+
+# Auto-generated
+*.d.ts
