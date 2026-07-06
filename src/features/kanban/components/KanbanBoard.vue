@@ -4,13 +4,14 @@
     </div>
     <el-row :gutter="20" class="board-row">
         <el-col :xs="24" :sm="24" :md="8" :lg="8" :xl="8">
-            <KanbanColumn :status="TaskStatus.TODO" title="To Do" />
+            <KanbanColumn :status="TaskStatus.TODO" title="To Do" :tasks="getTasksByStatus(TaskStatus.TODO)" />
         </el-col>
         <el-col :xs="24" :sm="24" :md="8" :lg="8" :xl="8">
-            <KanbanColumn :status="TaskStatus.IN_PROGRESS" title="In Progress" />
+            <KanbanColumn :status="TaskStatus.IN_PROGRESS" title="In Progress"
+                :tasks="getTasksByStatus(TaskStatus.IN_PROGRESS)" />
         </el-col>
         <el-col :xs="24" :sm="24" :md="8" :lg="8" :xl="8">
-            <KanbanColumn :status="TaskStatus.DONE" title="Done" />
+            <KanbanColumn :status="TaskStatus.DONE" title="Done" :tasks="getTasksByStatus(TaskStatus.DONE)" />
         </el-col>
     </el-row>
 </template>
@@ -22,10 +23,10 @@ import KanbanColumn from '@/features/kanban/components/KanbanColumn.vue'
 import { useTaskStore } from '../stores/taskStore'
 import { TaskStatus } from '../types/task'
 
-const taskStore = useTaskStore()
+const { initialize, taskList, getTasksByStatus } = useTaskStore()
 
 onMounted(() => {
-    taskStore.initialize()
+    initialize()
 })
 </script>
 

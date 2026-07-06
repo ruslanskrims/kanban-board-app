@@ -1,22 +1,40 @@
 <template>
-    <div class="kanban-column" :class="`kanban-column--${status}`">
+    <div class="kanban-column" :class="`kanban-column--${columnStatus}`">
         <div class=" kanban-column__header">
             <div class="kanban-column__title-wrapper">
                 <h3 class="kanban-column__title">{{ title }}</h3>
             </div>
         </div>
+
+        <KanbanTaskList :taskList="tasks" />
     </div>
 </template>
 
 <script setup lang="ts">
-import type { TaskStatus } from '../types/task';
+import { computed } from 'vue';
+import { TaskStatus, type Task } from '../types/task';
+import KanbanTaskList from './KanbanTaskList.vue';
 
 interface KanbanColumnProps {
     title: string
     status: TaskStatus
+    tasks: Task[]
 }
 
 const props = defineProps<KanbanColumnProps>()
+
+const columnStatus = computed<string>(() => {
+    switch (props.status) {
+        case TaskStatus.TODO:
+            return 'todo'
+        case TaskStatus.IN_PROGRESS:
+            return 'in-progress'
+        case TaskStatus.DONE:
+            return 'done'
+        default:
+            return 'todo'
+    }
+})
 </script>
 
 <style scoped>

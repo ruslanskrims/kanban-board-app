@@ -52,6 +52,14 @@ export const useTaskStore = defineStore('task', () => {
           createdAt: new Date(),
           updatedAt: new Date(),
         },
+        {
+          id: uuidv4(),
+          title: '[TOL-4] Configure Husky',
+          description: 'Configure Husky',
+          status: TaskStatus.TODO,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
       ]
       taskList.value = initTaskList
       saveTasks(taskList.value)
@@ -69,10 +77,15 @@ export const useTaskStore = defineStore('task', () => {
 
   const hasTasks = computed(() => taskList.value.length > 0)
 
+  const getTasksByStatus = computed(() => (status: TaskStatus) => {
+    return taskList.value.filter((task) => task.status === status)
+  })
+
   return {
     initialize,
     taskList,
     hasTasks,
     addTask,
+    getTasksByStatus,
   }
 })
