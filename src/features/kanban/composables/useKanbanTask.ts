@@ -6,12 +6,13 @@ import { ref } from 'vue'
 export function useKanbanTask() {
   const isLoading = ref(false)
   const error = ref<string | null>(null)
+
   const getAllTasks = async (): Promise<Task[]> => {
     isLoading.value = true
     error.value = null
 
     try {
-      const response = await apiClient.get<Task[]>('/tasks')
+      const response = await apiClient.get<Task[]>('')
       return response.data
     } catch (err) {
       if (axios.isAxiosError(err)) {
