@@ -23,20 +23,18 @@ import KanbanColumn from '@/features/kanban/components/KanbanColumn.vue'
 import { useTaskStore } from '../stores/taskStore'
 import { TaskStatus } from '../types/task'
 
-const { initialize, taskList, getTasksByStatus } = useTaskStore()
+const { fetchTasks, getTasksByStatus } = useTaskStore()
 
-onMounted(() => {
-    initialize()
+onMounted(async () => {
+    try {
+        await fetchTasks()
+    } catch (error) {
+        console.error('Failed to load tasks:', error)
+    }
 })
 </script>
 
 <style scoped>
-.kanban-lite-view {
-    padding: 24px;
-    max-width: 1400px;
-    margin: 0 auto;
-}
-
 .app-header {
     margin-bottom: 24px;
 }
@@ -61,10 +59,11 @@ onMounted(() => {
 }
 
 .board-row {
-    margin: 0 -10px;
+    margin: 0 auto;
 }
 
 .board-row .el-col {
     padding: 0 10px;
+    max-width: 400px;
 }
 </style>

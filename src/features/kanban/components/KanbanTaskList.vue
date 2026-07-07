@@ -15,6 +15,14 @@ defineProps<{ taskList: Task[] }>()
 <style scoped lang="scss">
 .kanban-task-list {
     flex: 1;
+
+}
+
+.el-scrollbar__view {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    background-color: red !important;
 }
 
 a {
