@@ -12,3 +12,9 @@ export interface Task {
   createdAt: Date
   updatedAt: Date
 }
+
+export interface TaskFormData {
+  title: string
+  description?: string
+  status: number
+}

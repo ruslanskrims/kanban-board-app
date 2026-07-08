@@ -3,6 +3,7 @@ import { Clock } from '@element-plus/icons-vue'
 import type { Task } from '../types/task';
 import { ElCard } from 'element-plus';
 import { computed } from 'vue';
+import dayjs from 'dayjs'
 
 import {
     List,
@@ -27,26 +28,26 @@ const statusIcon = computed(() => {
 </script>
 
 <template>
-    <ElCard class="kanban-task-card" :class="`task-card--${task.status}`" shadow="hover">
+    <ElCard class="task-card" :class="`task-card--${task.status}`" shadow="hover">
         <template #header>
-            <div class="kanban-task-card__header">
-                <h3 class="kanban-task-card__title">{{ task.title }}</h3>
+            <div class="task-card__header">
+                <h3 class="task-card__title">{{ task.title }}</h3>
             </div>
         </template>
 
-        <div v-if="task.description" class="kanban-task-card__description">
+        <div v-if="task.description" class="task-card__description">
             {{ task.description }}
         </div>
 
-        <div class="kanban-task-card__footer">
+        <div class="task-card__footer">
             <el-icon>
                 <component :is="statusIcon" />
             </el-icon>
-            <span class="kanban-task-card__timestamp">
+            <span class="task-card__createdAt">
                 <el-icon>
                     <Clock />
                 </el-icon>
-                {{ task.updatedAt }}
+                Created {{ dayjs(task.updatedAt).format('DD/MM/YYYY HH:mm') }}
             </span>
         </div>
     </ElCard>
@@ -55,7 +56,7 @@ const statusIcon = computed(() => {
 
 
 <style lang="scss">
-.kanban-task-card {
+.task-card {
     margin-bottom: 16px;
     transition: all 0.3s ease;
     cursor: grab;
@@ -114,7 +115,7 @@ const statusIcon = computed(() => {
         border-top: 1px solid #f0f0f0;
     }
 
-    &__timestamp {
+    &__createdAt {
         display: flex;
         align-items: center;
         gap: 4px;

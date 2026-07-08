@@ -1,27 +1,15 @@
-<template>
-    <div class="kanban-column" :class="`kanban-column--${columnStatus}`">
-        <div class=" kanban-column__header">
-            <div class="kanban-column__title-wrapper">
-                <h3 class="kanban-column__title">{{ title }}</h3>
-            </div>
-        </div>
-
-        <KanbanTaskList :taskList="tasks" />
-    </div>
-</template>
-
 <script setup lang="ts">
 import { computed } from 'vue';
-import { TaskStatus, type Task } from '../types/task';
-import KanbanTaskList from './KanbanTaskList.vue';
+import { TaskStatus, type Task } from '../types/task.ts';
+import TaskList from './TaskList.vue';
 
-interface KanbanColumnProps {
+interface TaskColumnProps {
     title: string
     status: TaskStatus
     tasks: Task[]
 }
 
-const props = defineProps<KanbanColumnProps>()
+const props = defineProps<TaskColumnProps>()
 
 const columnStatus = computed<string>(() => {
     switch (props.status) {
@@ -37,12 +25,24 @@ const columnStatus = computed<string>(() => {
 })
 </script>
 
+<template>
+    <div class="task-column" :class="`task-column--${columnStatus}`">
+        <div class=" task-column__header">
+            <div class="task-column__title-wrapper">
+                <h3 class="task-column__title">{{ title }}</h3>
+            </div>
+        </div>
+
+        <TaskList :taskList="tasks" />
+    </div>
+</template>
+
 <style lang="scss">
-.kanban-column {
+.task-column {
     background: #f7fafc;
     border-radius: 12px;
     padding: 16px;
-    min-height: 85vh;
+    max-height: 85vh;
     display: flex;
     flex-direction: column;
     border-top: 4px solid #e2e8f0;

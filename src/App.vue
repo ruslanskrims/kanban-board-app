@@ -1,5 +1,9 @@
 <script setup lang="ts">
+import * as dayjs from 'dayjs'
+import 'dayjs/locale/en'
 import KanbanBoardView from './views/KanbanBoardView.vue';
+
+dayjs.locale('en')
 </script>
 
 <template>
