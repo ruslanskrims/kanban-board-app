@@ -1,46 +1,37 @@
+## Architecture
 
-# kanban-board-app
+- Tech stack: Vue 3, Vite, TypeScript, Pinia (state), Element Plus (UI), Axios (HTTP).
+- Project structure: feature-based under src/features/tasks with components, types, stores, and composables for clear separation of concerns.
+- State & logic: Pinia stores in src/features/tasks/stores and composables in src/features/tasks/composables for reusable behavior.
+- API: centralized Axios client at src/api/client.ts.
+- UI: Element Plus components; task UI split into board/column/item/form for composability.
+- Build & checks: scripts in package.json use vite, vue-tsc, ESLint and Prettier.
 
-This template should help get you started developing with Vue 3 in Vite.
+## Architecture decisions
 
-## Recommended IDE Setup
-
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
-
-## Recommended Browser Setup
-
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
-
-## Type Support for `.vue` Imports in TS
-
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vite.dev/config/).
+- Feature-based layout: groups components, stores, types and composables by feature (src/features/tasks) to keep code modular and scalable.
+- Pinia for app state: lightweight, type-safe store that integrates with Vue 3 and TypeScript.
+- Composables for business logic: reusable hooks (src/features/tasks/composables) keep components thin and testable.
+- Centralized API client: single Axios instance (src/api/client.ts) to manage base URL, interceptors and HTTP concerns.
+- UI library: Element Plus chosen for ready-made UI primitives and consistent styling.
+- Types-first: TypeScript + dedicated types (src/features/tasks/types) to reduce runtime bugs and improve DX.
 
 ## Project Setup
+
+Install dependencies:
 
 ```sh
 npm install
 ```
 
-### Compile and Hot-Reload for Development
+Dev server:
 
 ```sh
 npm run dev
 ```
 
-### Type-Check, Compile and Minify for Production
+Build for production:
 
 ```sh
 npm run build
 ```
-=======
-# kanban-board-app
->>>>>>> origin/main
